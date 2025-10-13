@@ -1,0 +1,4 @@
+Names to use VSCode
+For Script : ScriptName.server.lua
+For LocalScript : ScriptName.client.lua
+For ModuleScript : ModuleName.lua
