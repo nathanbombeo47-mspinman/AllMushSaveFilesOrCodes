@@ -1,0 +1,22 @@
+local tool = script.Parent
+
+tool.Equipped:Connect(function()
+	print("this tool has been equipped")
+end)
+
+tool.Unequipped:Connect(function()
+	print("this tool has been unequipped")
+end)
+
+tool.Activated:Connect(function()
+	print("tool has been activated")
+end)
+
+tool.Deactivated:Connect(function()
+	print("tool has been deactivated")
+end)
+
+so activated means like when you click on mouse left click and for other devices like mobile, xbox, etc and
+deactivated means when you let go of the clicking tapping.
+
+equipped means when you equip the tool and unequipped means you unequip it
