@@ -1,0 +1,2 @@
+local scripts, local scripts are essential for visuality for each player. EX: bata the part and
+sees the secret, but heres jepjep didn't part and don't see the secret.
