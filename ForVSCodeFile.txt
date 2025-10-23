@@ -13,10 +13,12 @@ while switcher do
 local partspawner = Instance.new("Part", workspace)
 partspawner.Position = Vector3.new(0, 100, 0)
 task.wait(1)
+    end
 end)
  
 for _ = 1, 100 do
     task.wait(1)
 end
 🏹switcher = false
+
 
