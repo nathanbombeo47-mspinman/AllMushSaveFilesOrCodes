@@ -1,4 +1,20 @@
 Names to use VSCode
 For Script : ScriptName.server.lua
 For LocalScript : ScriptName.client.lua
+
 For ModuleScript : ModuleName.lua
+
+Test This⬇️
+
+🏹local switcher = true
+ 
+local partspawner = Instance.new("Part", workspace)
+task.spawn(partspawner)
+partspawner.Position = Vector3.new(0, 100, 0)
+task.wait(1)
+end)
+ 
+for _ = 1, 100 do
+    task.wait(1)
+end
+🏹switcher = false
