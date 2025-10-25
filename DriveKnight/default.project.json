@@ -1,0 +1,90 @@
+{
+  "name": "Jacob",
+  "tree": {
+    "$className": "DataModel",
+
+    "StarterGui": {
+      "ServicesGui": {
+        "$path": "src/ServicesGui"
+      }
+    },
+
+    "ServerStorage": {
+      "ServicesStorage": {
+        "$path": "src/ServicesStorage"
+      }
+    },
+
+    "StarterPack": {
+      "ServicesT": {
+        "$path": "src/ServicesT"
+      }
+    },
+
+    "ReplicatedStorage": {
+      "ServicesM": {
+        "$path": "src/ServicesM"
+      }
+    },
+
+    "ServerScriptService": {
+      "ServicesS": {
+        "$path": "src/ServicesS"
+      }
+    },
+
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "ServicesC": {
+          "$path": "src/ServicesC"
+        }
+      }
+    },
+
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Color": [
+            0,
+            400,
+            0
+          ],
+          "Locked": true,
+          "Position": [
+            0,
+            -10,
+            0
+          ],
+          "Size": [
+            512,
+            20,
+            512
+          ]
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0,
+          0,
+          0
+        ],
+        "Brightness": 2,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}
