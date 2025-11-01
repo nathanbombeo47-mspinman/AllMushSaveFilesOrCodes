@@ -48,6 +48,7 @@
       "Baseplate": {
         "$className": "Part",
         "$properties": {
+          "CastShadow": false,
           "Anchored": true,
           "Color": [
             0,
