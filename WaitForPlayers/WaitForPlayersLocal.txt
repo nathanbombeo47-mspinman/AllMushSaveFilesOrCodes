@@ -1,0 +1,15 @@
+This local script is located into the ScreenGui, screengui's parent is StarterGui:
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local updateWaitUI = ReplicatedStorage:WaitForChild("UpdateWaitUI")
+local textLabel = script.Parent:WaitForChild("Text")
+
+print("[WaitUIController] UI controller initialized")
+
+local function updateVisibility(shouldShowWait)
+	textLabel.Visible = shouldShowWait
+	print("[WaitUIController] Text visibility set to:", shouldShowWait)
+end
+
+updateWaitUI.OnClientEvent:Connect(updateVisibility)
