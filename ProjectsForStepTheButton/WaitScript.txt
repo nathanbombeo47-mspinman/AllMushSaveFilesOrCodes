@@ -1,0 +1,44 @@
+The WaitScript located to the ServerScriptService:
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local waitEvent = ReplicatedStorage:WaitForChild("Wait")
+local lobbyPart = workspace:WaitForChild("LobbyPart")
+local tweenPart = workspace:WaitForChild("TweenPart")
+
+local countdownEvent = Instance.new("RemoteEvent")
+countdownEvent.Name = "CountdownEvent"
+countdownEvent.Parent = ReplicatedStorage
+
+waitEvent.Event:Connect(function()
+	print("[WaitScript] Wait event fired - starting teleport sequence")
+
+	local allPlayers = Players:GetPlayers()
+
+	for _, player in allPlayers do
+		local character = player.Character
+		if character then
+			local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+			if humanoidRootPart then
+				humanoidRootPart.CFrame = lobbyPart.CFrame + Vector3.new(0, 5, 0)
+			end
+		end
+	end
+
+	countdownEvent:FireAllClients("start")
+
+	task.wait(30)
+
+	for _, player in Players:GetPlayers() do
+		local character = player.Character
+		if character then
+			local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+			if humanoidRootPart then
+				humanoidRootPart.CFrame = tweenPart.CFrame + Vector3.new(0, 5, 0)
+			end
+		end
+	end
+
+	print("[WaitScript] Teleport sequence complete")
+end)

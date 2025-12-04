@@ -1,0 +1,14 @@
+I ACTUALLY HAVE A BINDABLE EVENT CALLED "Wait" LOCATED TO REPLICATEDSTORAGE SO ADD THAT!!!
+AFTER ALL OF THIS JUST REQUIRE THE MODULE AND IT WILL WORK!!
+
+The WaitModule located to ReplicatedStorage:
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local module = {}
+
+task.wait(3)
+local waitEvent = ReplicatedStorage:WaitForChild("Wait")
+waitEvent:Fire()
+
+return module

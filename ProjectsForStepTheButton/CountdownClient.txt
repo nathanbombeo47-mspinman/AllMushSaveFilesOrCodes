@@ -1,0 +1,27 @@
+The Local Script Called "CountdownClient" inside ScreenGui:
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local waitGui = script.Parent
+local waitText = waitGui:WaitForChild("WaitText")
+
+local countdownEvent = ReplicatedStorage:WaitForChild("CountdownEvent")
+
+countdownEvent.OnClientEvent:Connect(function(action)
+	if action == "start" then
+		waitText.Visible = true
+
+		for i = 30, 0, -1 do
+			waitText.Text = "Round Starting: " .. i
+			task.wait(1)
+		end
+
+		waitText.Visible = false
+	end
+end)
+
+
+
+
