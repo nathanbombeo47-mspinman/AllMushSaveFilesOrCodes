@@ -1,0 +1,9 @@
+Plan For My Game
+
+All players, alive or dead, are teleported to the lobby immediately after the event ends.
+
+A countdown starts automatically (20 → 0) for the next round.
+
+After the countdown, all players get teleported to TweenPart.
+
+The disaster duration can be different for every type of event, so the function should not rely on fixed timing — it should trigger only after the event signals it is done.
