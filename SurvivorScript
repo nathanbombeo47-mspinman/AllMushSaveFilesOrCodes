@@ -1,0 +1,24 @@
+Script inside ServerScriptService:
+
+-- ServerScriptService/Services/SurvivorScript
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local survivorMessage = ReplicatedStorage:WaitForChild("SurvivorMessage")
+
+local function announceSurvivors(survivors)
+	print("[SurvivorScript] Announcing survivors. Count:", #survivors)
+
+	local survivorUsernames = {}
+	for _, player in survivors do
+		if player and player:IsA("Player") and player.Parent then
+			table.insert(survivorUsernames, player.Name)
+			print("[SurvivorScript] Added survivor:", player.Name)
+		end
+	end
+
+	print("[SurvivorScript] Total survivors to announce:", #survivorUsernames)
+	survivorMessage:Fire(survivorUsernames)
+end
+
+return announceSurvivors
