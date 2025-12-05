@@ -1,0 +1,32 @@
+local script inside a screengui:
+
+-- StarterGui/Message/SurvivorLocal
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local survivorMessage = ReplicatedStorage:WaitForChild("SurvivorMessage")
+local textLabel = script.Parent:WaitForChild("TextLabel")
+
+print("[SurvivorLocal] LocalScript loaded and waiting for survivor messages")
+
+survivorMessage.Event:Connect(function(survivorUsernames)
+	print("[SurvivorLocal] Received survivor data. Count:", #survivorUsernames)
+	print("[SurvivorLocal] Survivors:", survivorUsernames)
+
+	if #survivorUsernames == 0 then
+		textLabel.Text = "No Survivors!"
+		textLabel.Visible = true
+	elseif #survivorUsernames == 1 then
+		textLabel.Text = "Survivor: " .. survivorUsernames[1]
+		textLabel.Visible = true
+	else
+		local survivorText = table.concat(survivorUsernames, ", ")
+		textLabel.Text = "Survivors: " .. survivorText
+		textLabel.Visible = true
+	end
+
+	print("[SurvivorLocal] TextLabel updated and made visible")
+
+	task.wait(5)
+	textLabel.Visible = false
+	print("[SurvivorLocal] TextLabel hidden")
+end)
