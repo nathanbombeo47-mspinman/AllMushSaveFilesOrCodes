@@ -1,0 +1,40 @@
+The ServerScript inside Button:
+
+local TweenService = game:GetService("TweenService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local button = script.Parent
+local switch = false
+
+local updateWaitUI = ReplicatedStorage:WaitForChild("UpdateWaitUI")
+
+local tweenInfo = TweenInfo.new(
+	1,
+	Enum.EasingStyle.Quad,
+	Enum.EasingDirection.Out
+)
+
+button.Touched:Connect(function(hit)
+	if not switch then
+		button.Color = Color3.fromRGB(255, 0, 0)
+		task.wait(2.5)
+
+		local tween = TweenService:Create(button, tweenInfo, {
+			CFrame = CFrame.new(-17, -13.5, 0)
+		})
+		tween:Play()
+
+		task.wait(0.5)
+		updateWaitUI:FireAllClients(false)
+
+		task.wait(20)
+		button.Color = Color3.fromRGB(5, 255, 26)
+		local tween2 = TweenService:Create(button, tweenInfo, {
+			CFrame = CFrame.new(-17, 0.5, 0)
+		})
+		tween2:Play()
+
+		task.wait(1)
+		updateWaitUI:FireAllClients(true)
+	end
+end)
