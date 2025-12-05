@@ -13,3 +13,4 @@ local function updateVisibility(shouldShowWait)
 end
 
 updateWaitUI.OnClientEvent:Connect(updateVisibility)
+
