@@ -19,21 +19,21 @@ end
 local function teleportPlayer(player)
 	local character = player.Character
 	if not character then return end
-	
+
 	local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
 	if not humanoidRootPart then return end
-	
+
 	local targetCFrame = getTeleportCFrame()
-	
+
 	local tweenInfo = TweenInfo.new(
 		1.5,
 		Enum.EasingStyle.Quad,
 		Enum.EasingDirection.InOut
 	)
-	
+
 	local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
 	tween:Play()
-	
+
 	print("[PlayerManager] Tweening player", player.Name, "to TweenPart")
 end
 
@@ -53,7 +53,7 @@ end
 local function checkPlayerCount()
 	local playerCount = #Players:GetPlayers()
 	print("[PlayerManager] Current player count:", playerCount)
-	
+
 	if playerCount >= REQUIRED_PLAYERS then
 		if not playersTeleported then
 			updateUIForAllPlayers(false)
@@ -68,12 +68,12 @@ end
 
 Players.PlayerAdded:Connect(function(player)
 	print("[PlayerManager] Player joined:", player.Name)
-	
+
 	player.CharacterAdded:Connect(function()
 		task.wait(0.1)
 		checkPlayerCount()
 	end)
-	
+
 	checkPlayerCount()
 end)
 
@@ -83,3 +83,4 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 
 checkPlayerCount()
+
