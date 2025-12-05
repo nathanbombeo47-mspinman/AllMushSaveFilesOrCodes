@@ -1,7 +1,6 @@
 This serverscript is located in the ServerScriptService:
 
 local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local updateWaitUI = ReplicatedStorage:WaitForChild("UpdateWaitUI")
@@ -24,20 +23,14 @@ local function teleportPlayer(player)
 	if not humanoidRootPart then return end
 
 	local targetCFrame = getTeleportCFrame()
+	humanoidRootPart.CFrame = targetCFrame
 
-	local tweenInfo = TweenInfo.new(
-		1.5,
-		Enum.EasingStyle.Quad,
-		Enum.EasingDirection.InOut
-	)
-
-	local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-	tween:Play()
-
-	print("[PlayerManager] Tweening player", player.Name, "to TweenPart")
+	print("[PlayerManager] Teleported player", player.Name, "to TweenPart")
 end
 
 local function teleportAllPlayers()
+	print("[PlayerManager] Waiting 5 seconds before teleporting...")
+	task.wait(5)
 	print("[PlayerManager] Teleporting all players to TweenPart...")
 	for _, player in pairs(Players:GetPlayers()) do
 		teleportPlayer(player)
@@ -57,7 +50,6 @@ local function checkPlayerCount()
 	if playerCount >= REQUIRED_PLAYERS then
 		if not playersTeleported then
 			updateUIForAllPlayers(false)
-			task.wait(0.5)
 			teleportAllPlayers()
 		end
 	else
