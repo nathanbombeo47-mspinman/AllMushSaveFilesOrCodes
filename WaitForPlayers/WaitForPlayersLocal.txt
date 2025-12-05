@@ -1,5 +1,3 @@
-This local script is located into the ScreenGui, screengui's parent is StarterGui:
-
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local updateWaitUI = ReplicatedStorage:WaitForChild("UpdateWaitUI")
@@ -13,4 +11,3 @@ local function updateVisibility(shouldShowWait)
 end
 
 updateWaitUI.OnClientEvent:Connect(updateVisibility)
-
