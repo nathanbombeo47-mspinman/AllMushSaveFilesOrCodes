@@ -1,0 +1,91 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local survivorBindable = ReplicatedStorage:WaitForChild("SurvivorBindable")
+
+-- Track state
+local isTracking = false
+local trackedPlayers = {}
+
+print("[SurvivorScript] Script loaded and waiting for bindable event")
+
+-- Listen for player deaths/respawns during tracking
+local function setupPlayerTracking(player)
+	player.CharacterAdded:Connect(function(character)
+		if isTracking then
+			-- Player respawned during observation = remove from tracking
+			if trackedPlayers[player.UserId] then
+				print("[SurvivorScript] Player", player.Name, "respawned - removing from survivors")
+				trackedPlayers[player.UserId] = nil
+			end
+		end
+	end)
+end
+
+-- Setup tracking for existing players
+for _, player in Players:GetPlayers() do
+	setupPlayerTracking(player)
+end
+
+-- Setup tracking for new players
+Players.PlayerAdded:Connect(setupPlayerTracking)
+
+local function startTracking()
+	if isTracking then
+		-- Second fire = announce survivors
+		print("[SurvivorScript] Announcing survivors after observation period")
+		
+		local survivors = {}
+		for userId, _ in pairs(trackedPlayers) do
+			local player = Players:GetPlayerByUserId(userId)
+			if player then
+				local character = player.Character
+				if character then
+					local humanoid = character:FindFirstChild("Humanoid")
+					if humanoid and humanoid.Health > 0 then
+						table.insert(survivors, player.Name)
+					end
+				end
+			end
+		end
+		
+		print("[SurvivorScript] Total survivors:", #survivors)
+		
+		-- Update SurvivorData for clients
+		local survivorData = ReplicatedStorage:FindFirstChild("SurvivorData")
+		if not survivorData then
+			survivorData = Instance.new("StringValue")
+			survivorData.Name = "SurvivorData"
+			survivorData.Parent = ReplicatedStorage
+		end
+		
+		if #survivors == 0 then
+			survivorData.Value = "NONE"
+		else
+			survivorData.Value = table.concat(survivors, ",")
+		end
+		
+		-- Reset tracking
+		isTracking = false
+		trackedPlayers = {}
+	else
+		-- First fire = start tracking
+		print("[SurvivorScript] Starting 50 second observation period")
+		isTracking = true
+		trackedPlayers = {}
+		
+		-- Record all current players
+		for _, player in Players:GetPlayers() do
+			trackedPlayers[player.UserId] = true
+			print("[SurvivorScript] Tracking player:", player.Name)
+		end
+		
+		-- Clear survivor data at start
+		local survivorData = ReplicatedStorage:FindFirstChild("SurvivorData")
+		if survivorData then
+			survivorData.Value = ""
+		end
+	end
+end
+
+survivorBindable.Event:Connect(startTracking)
