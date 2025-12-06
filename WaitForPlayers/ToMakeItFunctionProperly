@@ -1,0 +1,9 @@
+--this is a serverscript inside ServerScriptService
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local bindableEvent = ReplicatedStorage:WaitForChild("SurvivorBindable")
+
+task.wait(.5)
+bindableEvent:Fire()
+task.wait(.5)
+bindableEvent:Fire()
