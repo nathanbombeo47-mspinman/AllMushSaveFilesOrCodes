@@ -1,0 +1,42 @@
+local part = script.Parent
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local falsee = false
+local bindableEvent = ReplicatedStorage:WaitForChild("SurvivorBindable")
+
+print("[ButtonScript] Button script loaded")
+
+part.Touched:Connect(function(hit)
+	if falsee then
+		print("[ButtonScript] Button on cooldown, ignoring touch")
+		return
+	end
+	
+	local player = Players:GetPlayerFromCharacter(hit.Parent)
+	if not player then
+		return
+	end
+	
+	print("[ButtonScript] Button touched by", player.Name, "- Starting 50 second observation period")
+	
+	falsee = true
+	part.Color = Color3.fromRGB(255, 0, 0)
+	
+	-- Fire the event to start tracking
+	bindableEvent:Fire()
+	
+	-- Wait 50 seconds (observation period)
+	task.wait(5)--or depends when the disaster is done
+	
+	-- After 50 seconds, fire again to announce survivors
+	bindableEvent:Fire()
+	
+	print("[ButtonScript] 50 second observation ended - Survivors announced")
+	
+	-- Cooldown before button can be pressed again
+	task.wait(2.5)
+	falsee = false
+	part.Color = Color3.fromRGB(163, 162, 165)
+	print("[ButtonScript] Button ready again")
+end)
