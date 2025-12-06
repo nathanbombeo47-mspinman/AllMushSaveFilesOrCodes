@@ -1,0 +1,57 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local localPlayer = Players.LocalPlayer
+local textLabel = script.Parent:WaitForChild("TextLabel")
+local survivorData = ReplicatedStorage:WaitForChild("SurvivorData")
+
+print("[SurvivorLocal] LocalScript loaded")
+
+survivorData:GetPropertyChangedSignal("Value"):Connect(function()
+	local survivorString = survivorData.Value
+	
+	if survivorString == "" then
+		textLabel.Visible = false
+		return
+	end
+	
+	if survivorString == "NONE" then
+		textLabel.Text = "No Survivors!"
+		textLabel.Visible = true
+		print("[SurvivorLocal] No survivors - showing message")
+		task.wait(5)
+		textLabel.Visible = false
+		return
+	end
+	
+	local survivorUsernames = string.split(survivorString, ",")
+	print("[SurvivorLocal] Received survivor data. Count:", #survivorUsernames)
+	
+	-- Check if local player is in survivors list
+	local playerIsSurvivor = false
+	for _, name in survivorUsernames do
+		if name == localPlayer.Name then
+			playerIsSurvivor = true
+			break
+		end
+	end
+	
+	-- Only show message if player survived
+	if playerIsSurvivor then
+		if #survivorUsernames == 1 then
+			textLabel.Text = "Survivor: " .. survivorUsernames[1]
+		else
+			local survivorText = table.concat(survivorUsernames, ", ")
+			textLabel.Text = "Survivors: " .. survivorText
+		end
+		
+		textLabel.Visible = true
+		print("[SurvivorLocal] Player survived - showing message")
+		
+		task.wait(5)
+		textLabel.Visible = false
+		print("[SurvivorLocal] Message hidden")
+	else
+		print("[SurvivorLocal] Player did not survive - hiding message")
+	end
+end)
